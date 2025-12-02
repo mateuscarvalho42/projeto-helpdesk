@@ -1,44 +1,59 @@
-import React, { useState } from 'react'
-import Login from './components/Login'
-import Tickets from './components/Tickets'
-import NewTicket from './components/NewTicket'
-import axios from "axios"
+import { useState, useEffect } from "react";
+import Login from "./pages/Login";
+import Cadastro from "./pages/Cadastro";
+import CriarChamado from "./pages/CriarChamado";
+import ListaChamados from "./pages/ListaChamados";
 
 export default function App() {
-  const [token, setToken] = useState("")
-  const [view, setView] = useState("")
+  const [page, setPage] = useState("login");
+  const [userEmail, setUserEmail] = useState(null);
 
-//   function handleLogout() {
-//     localStorage.removeItem('token')
-//     setToken(null)
-//     setView('login')
-//   }
-const conectarBack = async () => {
-  try{
-    console.log("valor de entrada", teste)
-    const resultado = await axios.post("http://localhost:3000/auth/register", {login})
-    SetAuthRegister(resultado.data.id);
-    alert("LOGOU COM SUCESSO")
-  }catch(error){
-    alert("erro mano" + error)
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    const user = localStorage.getItem("userEmail");
+    if (token && user) {
+      setUserEmail(user);
+      setPage("listar"); // se já estiver logado, vai direto para lista
+    }
+  }, []);
+
+  function handleLogout() {
+    localStorage.removeItem("token");
+    localStorage.removeItem("userEmail");
+    setUserEmail(null);
+    setPage("login");
   }
-}
-
 
   return (
-    <div className="app">
+    <>
       <nav className="navbar">
-        <h1>Helpdesk</h1>
-        <div>
-            <>
-              <button onClick={() => setView('tickets')}>Chamados</button>
-              <button onClick={() => setView('new')}>Novo Chamado</button>
-              <button >Sair</button>
-            </>
-        
-            <button onClick={conectarBack}>Entrar</button>
+        <div className="brand">
+          <div className="logo">HD</div>
+          <div>
+            <h1>HelpDesk</h1>
+            <small>Painel</small>
+          </div>
+        </div>
+
+        <div className="nav-actions">
+          {!userEmail && <button onClick={() => setPage("login")}>Entrar</button>}
+          {!userEmail && <button onClick={() => setPage("cadastro")}>Cadastrar</button>}
+          {userEmail && <button onClick={() => setPage("listar")}>Chamados</button>}
+          {userEmail && <button onClick={() => setPage("criar")}>Novo</button>}
+          {userEmail && <button onClick={handleLogout} className="danger">Sair</button>}
         </div>
       </nav>
-    </div>
-  )
+
+      <main className="main">
+        {page === "login" && <Login onLogin={(email) => { setUserEmail(email); setPage("listar"); }} />}
+        {page === "cadastro" && <Cadastro onSuccess={() => setPage("login")} />}
+        {page === "listar" && <ListaChamados />}
+        {page === "criar" && <CriarChamado onCreated={() => setPage("listar")} />}
+      </main>
+
+      <footer className="footer">
+        <span>© {new Date().getFullYear()} HelpDesk</span>
+      </footer>
+    </>
+  );
 }

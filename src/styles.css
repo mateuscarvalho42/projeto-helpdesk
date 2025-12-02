@@ -1,0 +1,127 @@
+:root{
+  --bg:#0f1720;      
+  --card:#0f1727;
+  --muted:#98a0aa;
+  --accent:#7c5cff;
+  --success:#4ade80;
+  --danger:#fb7185;
+  --glass: rgba(255,255,255,0.04);
+  --input-bg: rgba(255,255,255,0.03);
+}
+
+*{box-sizing:border-box;font-family:Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;}
+html,body,#root{height:100%;margin:0;background:linear-gradient(180deg,var(--bg),#071019);color:#e6eef6;}
+a{color:var(--accent);}
+
+.navbar{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:12px 20px;
+  background:linear-gradient(180deg, rgba(255,255,255,0.02), transparent);
+  backdrop-filter: blur(6px);
+  border-bottom:1px solid rgba(255,255,255,0.03);
+}
+.brand{display:flex;gap:12px;align-items:center;}
+.logo{
+  width:48px;height:48px;border-radius:10px;
+  background:linear-gradient(135deg,var(--accent),#5aa0ff);
+  display:flex;align-items:center;justify-content:center;color:white;font-weight:700;
+  box-shadow:0 6px 18px rgba(124,92,255,0.12);
+}
+.navbar h1{margin:0;font-size:16px;}
+.navbar small{color:var(--muted);font-size:11px;}
+
+.nav-actions button{
+  margin-left:8px;
+  padding:8px 12px;
+  border-radius:8px;
+  border:1px solid transparent;
+  background:transparent;
+  color:var(--muted);
+  cursor:pointer;
+  transition:all .16s;
+}
+.nav-actions button:hover{
+  color:white;
+  transform:translateY(-2px);
+}
+.nav-actions .danger{
+  background:linear-gradient(90deg,var(--danger),#ff7a84);
+  color:#071019;
+  border:none;
+  font-weight:600;
+}
+
+.main{
+  padding:28px;
+  display:flex;
+  justify-content:center;
+  min-height:calc(100vh - 140px);
+}
+
+/* container padrão */
+.container{
+  width:100%;
+  max-width:680px;
+  background:linear-gradient(180deg,var(--card), rgba(255,255,255,0.02));
+  border-radius:12px;
+  padding:20px;
+  box-shadow: 0 8px 30px rgba(2,6,23,0.6);
+  border:1px solid rgba(255,255,255,0.03);
+}
+
+/* formulário */
+.container h2{margin-top:0;margin-bottom:8px;}
+.form-row{display:flex;gap:12px;}
+input, textarea, select {
+  width:100%;
+  padding:12px 14px;
+  border-radius:10px;
+  border:1px solid rgba(255,255,255,0.03);
+  background:var(--input-bg);
+  color:#e6eef6;
+  outline:none;
+  transition:box-shadow .12s, border-color .12s;
+}
+input:focus, textarea:focus, select:focus {
+  border-color: rgba(124,92,255,0.9);
+  box-shadow: 0 6px 22px rgba(124,92,255,0.06);
+}
+
+textarea{min-height:120px;resize:vertical;}
+
+button.primary{
+  background:linear-gradient(90deg,var(--accent), #5aa0ff);
+  color:#071019;
+  padding:12px 16px;
+  border-radius:10px;
+  border:none;
+  cursor:pointer;
+  font-weight:700;
+}
+button.ghost{
+  background:transparent;
+  border:1px solid rgba(255,255,255,0.04);
+  color:var(--muted);
+  padding:10px 14px;
+  border-radius:10px;
+}
+
+/* cards de chamado */
+ul.chamados{list-style:none;padding:0;margin:0;display:grid;gap:12px;}
+.card{
+  padding:14px;border-radius:10px;background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+  display:flex;flex-direction:column;gap:8px;border:1px solid rgba(255,255,255,0.02);
+}
+.card h3{margin:0;font-size:16px;}
+.card p{margin:0;color:var(--muted);font-size:14px;}
+.tag{display:inline-block;padding:6px 8px;border-radius:999px;font-size:12px;background:rgba(255,255,255,0.03);color:var(--muted);}
+
+/* mensagens */
+.msg{margin-top:10px;padding:10px;border-radius:8px;font-weight:600;}
+.msg.ok{background:rgba(74, 222, 128,0.12);color:var(--success);border:1px solid rgba(74,222,128,0.15);}
+.msg.err{background:rgba(251,113,133,0.06);color:var(--danger);border:1px solid rgba(251,113,133,0.12);}
+
+/* footer */
+.footer{padding:12px 20px;text-align:center;color:var(--muted);border-top:1px solid rgba(255,255,255,0.02);}
