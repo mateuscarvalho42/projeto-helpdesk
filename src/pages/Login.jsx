@@ -45,19 +45,38 @@ export default function Login({ onLogin }) {
   }
 
   return (
-    <div className="container" style={{ maxWidth: 420 }}>
-      <h2>Entrar na conta</h2>
+  <div className="container" style={{ maxWidth: 420 }}>
+    <h2>Entrar na conta</h2>
 
-      <form onSubmit={handleLogin}>
-        <input type="email" placeholder="E-mail" value={email} onChange={(e)=>setEmail(e.target.value)} />
-        <input type="password" placeholder="Senha" value={senha} onChange={(e)=>setSenha(e.target.value)} />
+    <form onSubmit={handleLogin} className="form-login">
+      <input
+        type="email"
+        placeholder="E-mail"
+        value={email}
+        onChange={(e) => setEmail(e.target.value)}
+      />
 
-        <div style={{display:"flex",gap:8}}>
-          <button className="primary" type="submit" disabled={loading}>{loading ? "Entrando..." : "Entrar"}</button>
-        </div>
-      </form>
+      <input
+        type="password"
+        placeholder="Senha"
+        value={senha}
+        onChange={(e) => setSenha(e.target.value)}
+      />
 
-      {msg && <div className={`msg ${msg.type === "ok" ? "ok" : "err"}`}>{msg.text}</div>}
-    </div>
-  );
+      <button
+        className="primary"
+        type="submit"
+        disabled={loading}
+      >
+        {loading ? "Entrando..." : "Entrar"}
+      </button>
+    </form>
+
+    {msg && (
+      <div className={`msg ${msg.type === "ok" ? "ok" : "err"}`}>
+        {msg.text}
+      </div>
+    )}
+  </div>
+);
 }
