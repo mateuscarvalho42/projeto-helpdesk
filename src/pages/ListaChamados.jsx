@@ -28,12 +28,10 @@ export default function ListaChamados({ onEdit, onDelete, reload }) {
     }
   }
 
-  // Carrega ao abrir a página
   useEffect(() => {
     carregar();
   }, []);
 
-  // 🔥 Recarrega quando o App.jsx mudar reload
   useEffect(() => {
     carregar();
   }, [reload]);
@@ -83,7 +81,6 @@ export default function ListaChamados({ onEdit, onDelete, reload }) {
               </small>
             </div>
 
-            {/* 🔽 Botões no final do card */}
             <div
               style={{
                 marginTop: "16px",
@@ -106,6 +103,9 @@ export default function ListaChamados({ onEdit, onDelete, reload }) {
                   width: "100%",
                   borderRadius: "50px",
                   fontWeight: "600",
+                  background: "#e63946",
+                  color: "white",
+                  border: "none"
                 }}
                 onClick={() => onDelete(c)}
               >
