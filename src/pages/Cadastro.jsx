@@ -49,7 +49,7 @@ export default function Cadastro({ onSuccess }) {
 
         <select value={perfil} onChange={(e)=>setPerfil(e.target.value)}>
           <option value="usuario">Usuário</option>
-          <option value="admin">Administrador</option>
+          <option value="tecnico">Técnico</option>
         </select>
 
         <div style={{display:"flex",gap:8}}>

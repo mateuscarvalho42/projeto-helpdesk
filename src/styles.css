@@ -105,7 +105,7 @@ a{color:var(--accent);}
   flex-direction:column;
   align-items:center;   /* centralização horizontal */
   text-align:center;    /* centralização de texto */
-  gap:20px;
+  gap:25  px;
 }
 
 .container h2{
@@ -124,7 +124,7 @@ a{color:var(--accent);}
   width: 100%;
   display: flex;
   flex-direction: column;
-  align-items: center;     /* Centraliza os inputs e botão */
+  align-items: center;   
   gap: 12px;
 }
 
